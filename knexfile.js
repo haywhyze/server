@@ -15,6 +15,10 @@ module.exports = {
   production: {
     client: 'pg',
     connection: `${process.env.DATABASE_URL}?ssl=true`,
+    pool: {
+      min: 2,
+      max: 10,
+    },
     useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
@@ -23,6 +27,7 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
+    acquireConnectionTimeout: 5000,
   },
   staging: {
     client: 'pg',
